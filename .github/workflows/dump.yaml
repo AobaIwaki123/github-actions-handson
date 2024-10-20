@@ -4,11 +4,19 @@ jobs:
   debug:
     runs-on: ubuntu-latest
     steps:
+      - name: Show Notice
+        run: echo "::notice::This job show github context and env"
       - uses: actions/checkout@v4
       - uses: ./.github/actions/dump/
+        name: dump github context and env
         id: dump
         with: 
           enable-context: 'true'
       - run: echo "${DATE}"
+        name: print dumped date
         env:
           DATE: ${{ steps.dump.outputs.dumped-date}}
+      - name: Job Summary
+        run: |
+          echo "# Dump job summary :rocket:" >> "${GITHUB_STEP_SUMMARY}"
+          echo "- Dumped date: ${DATE}" >> "${GITHUB_STEP_SUMMARY}"

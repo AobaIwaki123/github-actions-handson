@@ -16,8 +16,10 @@ runs:
   using: composite
   steps:
     - run: printenv | sort
+      name: print env and sort
       shell: bash # shell指定を省略できず、ないとエラーになる
     - run: echo "${CONTEXT}"
+      name: print github context
       if: ${{ inputs.enable-context == 'true' }}
       env:
         CONTEXT: ${{ toJson(github) }}

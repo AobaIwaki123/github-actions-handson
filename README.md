@@ -16,3 +16,6 @@ concurrency:
   group: ${{ github.head_ref }}
   cancel-in-progress: true
 ```
+- フィルターは、path, branch, tagなど様々存在する p71
+  - path系とその他のフィルターを併用するとAND条件になる
+  - pathとpath-ignoreは同時に使えない。そのような場合は、Globを用いる

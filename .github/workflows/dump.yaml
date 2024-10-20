@@ -17,6 +17,8 @@ jobs:
         env:
           DATE: ${{ steps.dump.outputs.dumped-date}}
       - name: Job Summary
+        env:
+          DATE: ${{ steps.dump.outputs.dumped-date}}
         run: |
           echo "# Dump job summary :rocket:" >> "${GITHUB_STEP_SUMMARY}"
           echo "- Dumped date: ${DATE}" >> "${GITHUB_STEP_SUMMARY}"

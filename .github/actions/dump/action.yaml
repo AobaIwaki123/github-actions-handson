@@ -1,0 +1,29 @@
+name: Dump
+description: |
+  環境変数とgithubコンテキストをログへ出力する
+  ワークフローのデバッグ用
+  required permission: メタデータ構文では、定義できないため明示的に記載する
+inputs:
+  enable-context:
+    default: 'true'
+    required: false
+    description: コンテキストをログ出力するかどうか
+outputs:
+  dumped-date:
+    value: ${{ steps.current.outputs.date }}
+    description: ダンプ日時
+runs:
+  using: composite
+  steps:
+    - run: printenv | sort
+      name: print env and sort
+      shell: bash # shell指定を省略できず、ないとエラーになる
+    - run: echo "${CONTEXT}"
+      name: print github context
+      if: ${{ inputs.enable-context == 'true' }}
+      env:
+        CONTEXT: ${{ toJson(github) }}
+      shell: bash
+    - id: current
+      run: echo "date=$(date)" >> "${GITHUB_OUTPUT}"
+      shell: bash

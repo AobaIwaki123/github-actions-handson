@@ -15,5 +15,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          set -o pipefail
           docker run --rm -v "$(pwd):$(pwd)" -w "$(pwd)" rhysd/actionlint:latest

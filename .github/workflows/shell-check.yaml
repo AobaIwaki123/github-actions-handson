@@ -1,0 +1,18 @@
+name: Check Shell Scripts
+on:
+  pull_request:
+    paths: ['.github/scripts/*.sh']
+defaults:
+  run:
+    shell: bash
+concurrency:
+  group: ${{ github.workflow}}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  check-scripts:
+    name: Check Shell Scripts
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - run: shellcheck .github/scripts/*.sh

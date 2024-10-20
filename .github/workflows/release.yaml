@@ -21,6 +21,7 @@ jobs:
             BUMP_LEVEL: ${{ inputs.bump-level }}
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           run: |
-          git config --global user.name "${USERNAME}"
-          git config --glovbal user.email "${EMAIL}"
-          version="$(.github/scripts/bump.sh $BUMP_LEVEL)"
+            git config --global user.name "${USERNAME}"
+            git config --glovbal user.email "${EMAIL}"
+            version="$(.github/scripts/bump.sh "${BUMP_LEVEL}")"
+            gh release create "${version}" --title "${version}"--generate-notes

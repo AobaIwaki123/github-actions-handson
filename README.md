@@ -19,3 +19,16 @@ concurrency:
 - フィルターは、path, branch, tagなど様々存在する p71
   - path系とその他のフィルターを併用するとAND条件になる
   - pathとpath-ignoreは同時に使えない。そのような場合は、Globを用いる
+- シェルコマンドから直接コンテキストを参照しない。特殊文字を含む場合、意図せぬ影響が発生する恐れがある。 p40
+  - 代わりに、環境変数を経由して渡すようにし、全ての環境変数を""で囲む
+```yaml
+jobs:
+  job:
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Run
+        run: |
+          echo "${GITHUB_TOKEN}"
+```
+- 特に理由がなければ可読性のためにGITHUB_ENVよりもGITHUB_OUTPUTを使う方がいい p55

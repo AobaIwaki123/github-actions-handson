@@ -2,6 +2,13 @@
 
 - GitHub CI/CD 実践ガイド
 
+# 目次
+
+- [GitHub Actionsの勉強](#github-actionsの勉強)
+- [目次](#目次)
+- [ベスプラ](#ベスプラ)
+- [汎用的なWorkflow](#汎用的なworkflow)
+
 # ベスプラ
 
 - タイムアウトは常に設定すべき p78
@@ -32,3 +39,15 @@ jobs:
           echo "${GITHUB_TOKEN}"
 ```
 - 特に理由がなければ可読性のためにGITHUB_ENVよりもGITHUB_OUTPUTを使う方がいい p55
+- 認知負荷の低減にコストを払う p132
+  - 名前や概要、入出力インターフェースの概要をわかりやすくする
+- きちんとログを出す
+
+# 汎用的なWorkflow
+
+- [shell-check](./.github/workflows/shecll-check.yml)
+  - shellcheckを使ってシェルスクリプトの静的解析を行う
+- [static-check](./.github/workflows/static-check.yml)
+  - actionlintを使ってGitHub Actionsの静的解析を行う
+- [release](./.github/workflows/release.yml)
+  - 自動的にタグづけを行うためのWorkflow

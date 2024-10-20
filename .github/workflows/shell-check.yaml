@@ -15,4 +15,6 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
-      - run: shellcheck .github/scripts/*.sh
+      - run: |
+          echo "Running shellcheck..."
+          shellcheck .github/scripts/*.sh

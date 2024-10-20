@@ -69,6 +69,8 @@ env:
   - actionlintを使ってGitHub Actionsの静的解析を行う
 - [release](./.github/workflows/release.yml)
   - 自動的にタグづけを行うためのWorkflow
+- [dump](./.github/workflows/dump.yml)
+  - Actions内のコンテキストや環境変数を出力するためのDebug用Workflow
 
 # ロギング
 

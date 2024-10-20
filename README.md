@@ -8,6 +8,7 @@
 - [目次](#目次)
 - [ベスプラ](#ベスプラ)
 - [汎用的なWorkflow](#汎用的なworkflow)
+- [ロギング](#ロギング)
 
 # ベスプラ
 
@@ -41,7 +42,7 @@ jobs:
 - 特に理由がなければ可読性のためにGITHUB_ENVよりもGITHUB_OUTPUTを使う方がいい p55
 - 認知負荷の低減にコストを払う p132
   - 名前や概要、入出力インターフェースの概要をわかりやすくする
-- きちんとログを出す
+- きちんとログを出す p95
 
 # 汎用的なWorkflow
 
@@ -51,3 +52,8 @@ jobs:
   - actionlintを使ってGitHub Actionsの静的解析を行う
 - [release](./.github/workflows/release.yml)
   - 自動的にタグづけを行うためのWorkflow
+
+# ロギング
+
+- 手軽にコマンドの実行履歴を確認する
+  - `set -x`

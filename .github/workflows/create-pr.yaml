@@ -29,7 +29,7 @@ jobs:
           git config --global user.email "aobaiwaki@gmail.com"
           git config --global user.name "AobaIwaki123"
 
-          echo "ls -la" > scripts/dummy.sh
+          echo "ls -la" > .github/scripts/dummy.sh
           git add .
           git commit -m "Add dummy.sh"
 

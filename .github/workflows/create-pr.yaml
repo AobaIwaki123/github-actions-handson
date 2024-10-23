@@ -40,4 +40,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH_NAME: ${{ steps.create-branch.outputs.branch_name }}
         run: |
-          gh pr create --base iwaki-dummy-main --head $BRANCH_NAME --title "Dummy PR" --body "This is a dummy PR"
+          gh pr create --base iwaki-dummy-main --title "Dummy PR" --body "This is a dummy PR"

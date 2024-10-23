@@ -1,0 +1,29 @@
+name: Create PR
+on:
+  push:
+    branches:
+      - iwaki-dummy-dev
+jobs:
+  create_pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create branch
+        run: |
+          hash=$(echo $GITHUB_SHA | cut -c1-7)
+          git switch -c iwaki-dummy-dev-$hash
+          git push origin iwaki-dummy-dev-$hash
+      
+      - name: Create Change
+        run: |
+          echo "This is a dummy change" > dummy.txt
+          git add dummy.txt
+          git commit -m "Add dummy.txt"
+          git push origin iwaki-dummy-dev-$hash
+
+      - name: Create PR
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr create --base iwaki-dummy-main --head iwaki-dummy-dev-$hash --title "Dummy PR" --body "This is a dummy PR"

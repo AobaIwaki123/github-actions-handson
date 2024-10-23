@@ -24,7 +24,7 @@ jobs:
       
       - name: Create Change
         env:
-          BRANCH_NAME=${{ steps.create-branch.outputs.branch_name }}
+          BRANCH_NAME: ${{ steps.create-branch.outputs.branch_name }}
         run: |
           git config --global user.email "aobaiwaki@gmail.com"
           git config --global user.name "AobaIwaki123"

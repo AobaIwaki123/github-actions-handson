@@ -15,8 +15,8 @@ jobs:
       - name: Create branch
         id: create-branch
         run: |
-          hash=$(echo $GITHUB_SHA | cut -c1-7)
-          BRANCH_NAME="iwaki-dummy-dev-$hash"
+          RANDOM_STRING=$(cat /dev/urandom | LC_CTYPE=C tr -dc 'a-z' | fold -w 5 | head -n 1)
+          BRANCH_NAME="iwaki-dummy-dev-$RANDOM_STRING"
           git switch -c $BRANCH_NAME
           git push origin $BRANCH_NAME
 

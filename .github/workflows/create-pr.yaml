@@ -13,12 +13,18 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Create branch
+        id: create-branch
         run: |
           hash=$(echo $GITHUB_SHA | cut -c1-7)
-          git switch -c iwaki-dummy-dev-$hash
-          git push origin iwaki-dummy-dev-$hash
+          BRANCH_NAME="iwaki-dummy-dev-$hash"
+          git switch -c $BRANCH_NAME
+          git push origin $BRANCH_NAME
+
+          echo "branch_name=$BRANCH_NAME" >> $GITHUB_OUTPUT
       
       - name: Create Change
+        env:
+          BRANCH_NAME=${{ steps.create-branch.outputs.branch_name }}
         run: |
           git config --global user.email "aobaiwaki@gmail.com"
           git config --global user.name "AobaIwaki123"
@@ -26,7 +32,8 @@ jobs:
           echo "This is a dummy change" > dummy.txt
           git add dummy.txt
           git commit -m "Add dummy.txt"
-          git push origin iwaki-dummy-dev-$hash
+
+          git push origin $BRANCH_NAME
 
       - name: Create PR
         env:

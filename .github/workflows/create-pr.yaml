@@ -20,6 +20,9 @@ jobs:
       
       - name: Create Change
         run: |
+          git config --global user.email "aobaiwaki@gmail.com"
+          git config --global user.name "AobaIwaki123"
+
           echo "This is a dummy change" > dummy.txt
           git add dummy.txt
           git commit -m "Add dummy.txt"

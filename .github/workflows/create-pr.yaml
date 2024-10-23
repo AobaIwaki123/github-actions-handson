@@ -29,9 +29,9 @@ jobs:
           git config --global user.email "aobaiwaki@gmail.com"
           git config --global user.name "AobaIwaki123"
 
-          echo "This is a dummy change" > dummy.txt
-          git add dummy.txt
-          git commit -m "Add dummy.txt"
+          echo "ls -la" > scripts/dummy.sh
+          git add .
+          git commit -m "Add dummy.sh"
 
           git push origin $BRANCH_NAME
 
